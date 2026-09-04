@@ -163,10 +163,10 @@ docs/images/performance_dashboard.png
 ## Repository Structure
 
 ```text
-├── models/
-├── data/
-├── src/
-├── docs/
+├── model/
+├── assets/
+├── dist/
+├── build/
 └── README.md
 ```
 
