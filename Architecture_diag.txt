@@ -1,0 +1,86 @@
+Perfect! Here’s a clear **visual architecture diagram** for your Edge AI demo pipeline. I’ll describe it in detail so you can translate it into a slide or diagram tool.
+
+---
+
+## **Edge AI Diagnostics Demo – Architecture Diagram**
+
+```
+┌─────────────────────────────┐            ┌─────────────────────────────┐
+│      Sample Generation      │            │       Compute Stack        │
+│  (Synthetic PCR Curves)     │            │                             │
+│  - 40–1024 time points      │            │ CPU / iGPU Utilization     │
+│  - Noise + signal           │            │ Metrics Panel (UI)         │
+└───────────────┬─────────────┘            └─────────────┬──────────────┘
+                │                                   │
+                │                                   │
+                ▼                                   ▼
+┌─────────────────────────────┐            ┌─────────────────────────────┐
+│    Preprocessing / Filtering│            │   Inference (ONNX Model)   │
+│  - Baseline correction      │            │   - Input: batch of curves │
+│  - Normalization            │            │   - 1–128 samples/batch    │
+└───────────────┬─────────────┘            │   - Small GEMM neural net  │
+                │                          │   - Output: class probabilities │
+                │                          │   - CPU or iGPU via DirectML │
+                ▼                          └─────────────┬──────────────┘
+┌─────────────────────────────┐                           │
+│   Curve Fitting / AI Prep   │                           │
+│  - Logistic or mock fitting │                           │
+│  - Prepares data for model  │                           │
+└───────────────┬─────────────┘                           │
+                │                                         │
+                ▼                                         ▼
+┌─────────────────────────────┐            ┌─────────────────────────────┐
+│      Metrics / Telemetry    │            │         UI Dashboard       │
+│  - CPU %                    │            │  - Amplification Curve     │
+│  - iGPU %                   │            │  - CPU / iGPU gauges       │
+│  - Inference latency        │            │  - Samples processed       │
+│  - Samples / Batch          │            │  - Mode selector buttons   │
+└───────────────┬─────────────┘            └─────────────────────────────┘
+                │
+                ▼
+       ┌───────────────────┐
+       │  Trade Show Demo  │
+       │ - Standard Lab    │
+       │ - Surge Mode      │
+       │ - CPU-Only Mode   │
+       └───────────────────┘
+```
+
+---
+
+### **Diagram Notes**
+
+1. **Left Column: Sample Flow**
+
+   * Simulates the lab workflow (image acquisition → filtering → curve preparation).
+   * Fully synthetic, but visually represents real diagnostic processing.
+
+2. **Right Column: Compute Stack**
+
+   * CPU handles preprocessing, telemetry, and orchestration.
+   * iGPU handles inference via ONNX Runtime + DirectML.
+
+3. **Telemetry & UI**
+
+   * Live metrics show **CPU %, iGPU %, latency, samples processed**.
+   * Batch size and mode changes are reflected in real-time.
+
+4. **Trade Show Modes**
+
+   * Standard Lab: low batch, normal throughput.
+   * Surge Mode: high batch, iGPU fully utilized.
+   * CPU-Only Mode: iGPU disabled, shows latency increase.
+
+---
+
+✅ **Takeaways for the audience**
+
+* Edge AI running entirely on a single Windows PC with iGPU.
+* No cloud dependency.
+* Demonstrates acceleration, throughput, and power-efficient AI.
+
+---
+
+If you want, I can also **make a polished slide-ready version of this diagram** with color-coded CPU/iGPU paths and animated arrows for demo purposes, so it looks visually “executive-ready” for trade shows.
+
+Do you want me to make that visual version next?

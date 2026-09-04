@@ -1,0 +1,51 @@
+┌───────────────────────────┐        ┌───────────────────────────────┐
+│       Demo Input           │        │      Real Analyzer Input       │
+│---------------------------│        │-------------------------------│
+│ Synthetic PCR curves       │  ==>   │ Fluorescence signal from PCR   │
+│  - 40–1024 points          │        │ or immunoassay                │
+│  - Baseline + noise + signal│        │ Each sample produces time-series │
+└───────────────────────────┘        └───────────────────────────────┘
+             │                                      │
+             ▼                                      ▼
+┌───────────────────────────┐        ┌───────────────────────────────┐
+│       Preprocessing        │        │    Signal Processing Layer     │
+│---------------------------│        │-------------------------------│
+│ Normalize / batch / shape  │  ==>   │ Baseline correction            │
+│ Synthetic batch generation │        │ Noise filtering               │
+└───────────────────────────┘        └───────────────────────────────┘
+             │                                      │
+             ▼                                      ▼
+┌───────────────────────────┐        ┌───────────────────────────────┐
+│      AI / Inference        │        │       Analyzer Algorithm      │
+│---------------------------│        │-------------------------------│
+│ ONNX GEMM Neural Network   │  ==>   │ Positive/Negative QC calls    │
+│ Batch size & CPU/iGPU mode │        │ Some instruments use ML/AI    │
+│ Latency & throughput demo  │        │ Optimized batch processing    │
+└───────────────────────────┘        └───────────────────────────────┘
+             │                                      │
+             ▼                                      ▼
+┌───────────────────────────┐        ┌───────────────────────────────┐
+│       Demo Output          │        │      Analyzer Output           │
+│---------------------------│        │-------------------------------│
+│ 3-class result per sample  │  ==>   │ Positive / Negative / QC Fail  │
+│ Display amplification curve│        │ QC curves & reports            │
+│ Metrics: CPU/iGPU, latency │        │ Throughput & instrument status │
+└───────────────────────────┘        └───────────────────────────────┘
+
+
+Visual/Trade-show Notes
+	1. Left column = your demo components:
+		○ Highlight batch size, CPU/iGPU mode, and animated curves.
+		○ Show real-time telemetry as a “hardware under stress” indicator.
+	2. Right column = real-world analyzer:
+		○ Maps synthetic curves → fluorescence signals.
+		○ Maps GEMM inference → real instrument decision algorithms.
+		○ Maps demo metrics → instrument throughput/latency.
+
+
+Key Talking Points While Showing This Slide
+	• “The demo abstracts a complex analyzer workflow to a simple ONNX model.”
+	• “Batch size changes simulate surge vs standard lab throughput modes.”
+	• “Animated amplification curves mimic what the lab software reads in real-time.”
+	• “CPU-only vs iGPU mode demonstrates hardware acceleration benefits.”
+“Metrics give executives visual confidence that edge AI can run high-throughput analyzers on low-cost 
